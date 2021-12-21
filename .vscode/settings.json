@@ -9,6 +9,7 @@
         "**/*.bin": true
     },
     "files.associations": {
+        "*.rpy": "renpy",
         "*.h": "c",
         "*.c": "c",
         "*.inc": "c",
@@ -17,7 +18,8 @@
         "xstddef": "c",
         "type_traits": "c",
         "utility": "c",
-        "ranges": "c"
+        "ranges": "c",
+        "chrono": "cpp"
     },
     "[markdown]": {
         "editor.trimAutoWhitespace": false,
