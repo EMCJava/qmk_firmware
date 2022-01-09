@@ -23,6 +23,19 @@ bool effect_runner_reactive(effect_params_t* params, reactive_f effect_func) {
         RGB      rgb    = rgb_matrix_hsv_to_rgb(effect_func(rgb_matrix_config.hsv, offset));
         rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
     }
+
+    // is fn layer
+    if (biton32(layer_state) % 2 == 1) {
+        uint8_t time = sin8(scale16by8(g_rgb_timer, (fract16)8 * rgb_matrix_config.speed));
+        HSV     hsv  = rgb_matrix_config.hsv;
+        hsv.v        = time;
+        RGB rgb      = rgb_matrix_hsv_to_rgb(hsv);
+
+        rgb_matrix_set_color(79, rgb.r, rgb.g, rgb.b);
+        rgb_matrix_set_color(80, rgb.r, rgb.g, rgb.b);
+        rgb_matrix_set_color(81, rgb.r, rgb.g, rgb.b);
+    }
+
     return rgb_matrix_check_finished_leds(led_max);
 }
 
