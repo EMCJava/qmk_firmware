@@ -36,7 +36,7 @@
 
 // Last led hit
 #ifndef LED_HITS_TO_REMEMBER
-#    define LED_HITS_TO_REMEMBER 8
+#    define LED_HITS_TO_REMEMBER 16
 #endif  // LED_HITS_TO_REMEMBER
 
 #ifdef RGB_MATRIX_KEYREACTIVE_ENABLED
