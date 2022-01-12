@@ -63,3 +63,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,                                KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS)
 
 };
+
+extern bool emcjava_capslock_is_on;
+
+void led_set_user(uint8_t usb_led) {
+
+    emcjava_capslock_is_on = usb_led & (1 << USB_LED_CAPS_LOCK);
+}

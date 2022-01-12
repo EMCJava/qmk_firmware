@@ -6,7 +6,8 @@ RGB_MATRIX_EFFECT(SOLID_REACTIVE)
 static HSV SOLID_REACTIVE_math(HSV hsv, uint16_t offset) {
     // hsv.h = addmod8(hsv.h, qsub8(255, offset) >> 2, 255);
     // hsv.h = qsub8(hsv.h, qsub8(255, offset));
-    hsv.h = scale8(offset, hsv.h);
+    hsv.h = scale8(qsub8(255, qmul8(qsub8(255, offset), 2)), hsv.h);
+    // hsv.h = scale8(qsub8(255, qsub8(cos8(scale8(90, offset)), 128) << 1), hsv.h);
     return hsv;
 }
 

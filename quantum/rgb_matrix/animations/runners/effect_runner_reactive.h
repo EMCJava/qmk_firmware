@@ -2,6 +2,8 @@
 
 #ifdef RGB_MATRIX_KEYREACTIVE_ENABLED
 
+extern bool emcjava_capslock_is_on;
+
 typedef HSV (*reactive_f)(HSV hsv, uint16_t offset);
 
 uint16_t tick_since_last_click(uint8_t index) {
@@ -23,8 +25,12 @@ bool effect_runner_reactive(effect_params_t* params, reactive_f effect_func) {
         RGB_MATRIX_TEST_LED_FLAGS();
         uint16_t tick = tick_since_last_click(i);
 
+        HSV hsv = rgb_matrix_config.hsv;
+        if(emcjava_capslock_is_on && i == 13)
+            hsv.v = 0;
+
         uint16_t offset = scale16by8(tick, qadd8(rgb_matrix_config.speed, 1));
-        RGB      rgb    = rgb_matrix_hsv_to_rgb(effect_func(rgb_matrix_config.hsv, offset));
+        RGB      rgb    = rgb_matrix_hsv_to_rgb(effect_func(hsv, offset));
         rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
     }
 
